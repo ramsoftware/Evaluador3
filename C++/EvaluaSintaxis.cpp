@@ -366,6 +366,10 @@ std::string EvaluaSintaxis::Transforma(std::string expresion) {
 		if (letra >= 'A' && letra <= 'Z') letra += ' ';
 		if (letra != ' ' && letra != '	') nuevo += letra;
 	}
+	
+	/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+	while (nuevo.find(std::string("))"), 0) != -1) nuevo = ReplaceAll(nuevo, std::string("))"), std::string(")+0)"));
+	
 	return nuevo;
 }
 
