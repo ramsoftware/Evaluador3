@@ -390,6 +390,10 @@
 				if (letra >= 'A' && letra <= 'Z') letra += ' ';
 				if (letra != ' ' && letra != '	') nuevo += letra.ToString();
 			}
+
+			/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+			while (nuevo.IndexOf("))") != -1) nuevo = nuevo.Replace("))", ")+0)");
+
 			return nuevo;
 		}
 
