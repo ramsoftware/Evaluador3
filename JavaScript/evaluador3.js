@@ -680,6 +680,10 @@ class EvaluaSintaxis {
 			if (letra >= 'A' && letra <= 'Z') letra = String.fromCharCode(letra.charCodeAt(0) + ' '.charCodeAt(0));
 			if (letra != ' ' && letra != '	') nuevo += letra;
 		}
+		
+		/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+		while (nuevo.indexOf("))") !== -1) nuevo = nuevo.replaceAll("))", ")+0)");
+		
 		return nuevo;
 	}
 
