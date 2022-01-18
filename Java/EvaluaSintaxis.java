@@ -1,4 +1,4 @@
-package com.company;
+package evaluador3;
 
 public class EvaluaSintaxis {
 	/* Mensajes de error de sintaxis */
@@ -391,6 +391,10 @@ public class EvaluaSintaxis {
 			if (letra >= 'A' && letra <= 'Z') letra += ' ';
 			if (letra != ' ' && letra != '	') nuevo += letra;
 		}
+		
+		/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+		while (nuevo.indexOf("))") != -1) nuevo = nuevo.replace("))", ")+0)");
+		
 		return nuevo;
 	}
 
