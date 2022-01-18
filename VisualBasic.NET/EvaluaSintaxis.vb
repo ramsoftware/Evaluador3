@@ -498,7 +498,7 @@
 			If letra <> " " And letra <> "	" Then nuevo += letra.ToString()
 		Next
 		
-		'Cambia los )) por )+0) porque es requerido al crear las piezas
+		'Cambia los )) por )+0) porque es requerido al crear las piezas.
 		While nuevo.IndexOf("))") <> -1
 			nuevo = nuevo.Replace("))", ")+0)")
 		End While
