@@ -1,4 +1,4 @@
-package evaluador3;
+package com.company;
 
 public class EvaluaSintaxis {
 	/* Mensajes de error de sintaxis */
