@@ -49,7 +49,7 @@ class Pieza:
         self.PiezaB = piezaB
 
 class Evaluador3:
-    # Autor: Rafael Alberto Moreno Parra. 02 de abril de 2021
+    # Autor: Rafael Alberto Moreno Parra. 26 de abril de 2021
     # Constantes de los diferentes tipos de datos que tendrán las piezas
     ESFUNCION = 1
     ESPARABRE = 2
@@ -63,7 +63,7 @@ class Evaluador3:
         Toma una expresión, por ejemplo: 3.14 + sen( 4 / x ) * ( 7.2 ^ 3 - 1 ) y la divide en partes así:
         |3.14| |+| |sen(| |4| |/| |x| |)| |*| |(| |7.2| |^| |3| |-| |1| |)|
         Cada parte puede tener un número, un operador, una función, un paréntesis que abre o un paréntesis que cierra """
-    Partes = [];
+    Partes = []
 
     """ Listado de piezas que ejecutan
         Toma las partes y las divide en piezas con la siguiente estructura:
@@ -76,23 +76,23 @@ class Evaluador3:
         E =  3.14 + D
 
         Esas piezas se evalúan de arriba a abajo y así se interpreta la ecuación """
-    Piezas = [];
+    Piezas = []
 
     # El arreglo unidimensional que lleva el valor de las variables
-    VariableAlgebra = [None] * 26;
+    VariableAlgebra = [None] * 26
 
 	# Uso del chequeo de sintaxis
-    Sintaxis = EvaluaSintaxis.EvaluaSintaxis();
+    Sintaxis = EvaluaSintaxis.EvaluaSintaxis()
 
     # Analiza la expresión
     def Analizar(self, expresionA):
-        expresionB = self.Sintaxis.Transforma(expresionA);
-        chequeo = self.Sintaxis.SintaxisCorrecta(expresionB);
+        expresionB = self.Sintaxis.Transforma(expresionA)
+        chequeo = self.Sintaxis.SintaxisCorrecta(expresionB)
         if (chequeo):
-            self.Partes.clear();
-            self.Piezas.clear();
-            self.CrearPartes(expresionB);
-            self.CrearPiezas();
+            self.Partes.clear()
+            self.Piezas.clear()
+            self.CrearPartes(expresionB)
+            self.CrearPiezas()
         return chequeo
 
     # Divide la expresión en partes
@@ -159,14 +159,14 @@ class Evaluador3:
         cont = len(self.Partes)-1
 
         while True:
-            tmpParte = self.Partes[cont];
+            tmpParte = self.Partes[cont]
             if tmpParte.Tipo == self.ESPARABRE or tmpParte.Tipo == self.ESFUNCION:
-                self.GenerarPiezasOperador('^', '^', cont);  # Evalúa las potencias
-                self.GenerarPiezasOperador('*', '/', cont);  # Luego evalúa multiplicar y dividir
-                self.GenerarPiezasOperador('+', '-', cont);  # Finalmente evalúa sumar y restar
+                self.GenerarPiezasOperador('^', '^', cont)  # Evalúa las potencias
+                self.GenerarPiezasOperador('*', '/', cont)  # Luego evalúa multiplicar y dividir
+                self.GenerarPiezasOperador('+', '-', cont)  # Finalmente evalúa sumar y restar
 
                 if tmpParte.Tipo == self.ESFUNCION: # Agrega la función a la última pieza
-                    self.Piezas[len(self.Piezas) - 1].Funcion = tmpParte.Funcion;
+                    self.Piezas[len(self.Piezas) - 1].Funcion = tmpParte.Funcion
 
                 # Quita el paréntesis/función que abre y el que cierra, dejando el centro
                 self.Partes.pop(cont)
@@ -180,10 +180,10 @@ class Evaluador3:
         cont = ini + 1
 
         while True:
-            tmpParte = self.Partes[cont];
+            tmpParte = self.Partes[cont]
             if tmpParte.Tipo == self.ESOPERADOR and (tmpParte.Operador == operA or tmpParte.Operador == operB):
-                tmpParteIzq = self.Partes[cont - 1];
-                tmpParteDer = self.Partes[cont + 1];
+                tmpParteIzq = self.Partes[cont - 1]
+                tmpParteDer = self.Partes[cont + 1]
                     
                 # Crea Pieza
                 self.Piezas.append(Pieza(-1,
@@ -213,7 +213,7 @@ class Evaluador3:
     def Evaluar(self):
         resultado = 0
         for pos in range(0, len(self.Piezas), 1):
-            tmpPieza = self.Piezas[pos];
+            tmpPieza = self.Piezas[pos]
 
             if tmpPieza.TipoA == self.ESNUMERO:
                numA = tmpPieza.NumeroA
@@ -287,12 +287,12 @@ class Evaluador3:
                 resultado = math.pow(resultado, 0.3333333333333333333333)
 
             if math.isnan(resultado) or math.isinf(resultado):
-               return resultado;
+               return resultado
 
-            tmpPieza.ValorPieza = resultado;
+            tmpPieza.ValorPieza = resultado
             
-        return resultado;
+        return resultado
 
     # Da valor a las variables que tendrá la expresión algebraica
     def DarValorVariable(self, varAlgebra, valor):
-        self.VariableAlgebra[ord(varAlgebra) - ord('a')] = valor;
+        self.VariableAlgebra[ord(varAlgebra) - ord('a')] = valor
