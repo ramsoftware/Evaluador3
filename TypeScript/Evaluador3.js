@@ -672,7 +672,9 @@ var EvaluaSintaxis = /** @class */ (function () {
             if (letra != ' ' && letra != '	')
                 nuevo += letra;
         }
-        return nuevo;
+        /* Cambia los )) por )+0) porque es requerido al crear las piezas */
+        var Nuevo = nuevo.replace(/\)\)/gi, ")+0)");
+        return Nuevo;
     };
     /* Muestra mensaje de error sintáctico */
     EvaluaSintaxis.prototype.MensajesErrorSintaxis = function (CodigoError) {

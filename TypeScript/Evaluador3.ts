@@ -718,7 +718,11 @@ class EvaluaSintaxis {
 			if (letra >= 'A' && letra <= 'Z') String.fromCharCode(letra.charCodeAt(0) + ' '.charCodeAt(0));
 			if (letra != ' ' && letra != '	') nuevo += letra;
 		}
-		return nuevo;
+		
+		/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+		var Nuevo: string = nuevo.replace(/\)\)/gi, ")+0)");
+		
+		return Nuevo;
 	}
 
 	/* Muestra mensaje de error sintáctico */
