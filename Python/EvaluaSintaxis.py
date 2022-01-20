@@ -409,7 +409,7 @@
             if letra != ' ' and letra != '	':
                nuevo = nuevo + letra;
         
-        #Cambia los )) por )+0) porque es requerido al crear las piezas
+        #Cambia los )) por )+0) porque es requerido al crear las piezas.
         while (nuevo.find("))") != -1):
             nuevo = nuevo.replace("))", ")+0)");
         
