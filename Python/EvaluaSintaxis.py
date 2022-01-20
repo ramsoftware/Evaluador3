@@ -1,4 +1,4 @@
-class EvaluaSintaxis:
+﻿class EvaluaSintaxis:
     # Mensajes de error de sintaxis
     _mensajeError = [
                 "0. Caracteres no permitidos. Ejemplo: 3$5+2",
@@ -408,8 +408,17 @@ class EvaluaSintaxis:
                letra = chr(ord(letra) + ord(' '));
             if letra != ' ' and letra != '	':
                nuevo = nuevo + letra;
+        
+        #Cambia los )) por )+0) porque es requerido al crear las piezas
+        while (nuevo.find("))") != -1):
+            nuevo = nuevo.replace("))", ")+0)");
+        
         return nuevo
 
     # Muestra mensaje de error sintáctico
     def MensajesErrorSintaxis(self, CodigoError):
         return self._mensajeError[CodigoError]
+
+
+
+
