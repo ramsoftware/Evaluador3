@@ -1,7 +1,7 @@
 <?php
 /* Evaluador de expresiones. Versión 3.0
  * Autor: Rafael Alberto Moreno Parra
- * Fecha: 25 de abril de 2021
+ * Fecha: 25 de marzo de 2021
  * 
  * Pasos para la evaluación de expresiones algebraicas
  * I. Toma una expresión, por ejemplo: 3.14 + sen( 4 / x ) * ( 7.2 ^ 3 - 1 ) y la divide en partes así:
@@ -212,7 +212,7 @@ class Evaluador3 {
 				unset($this->Partes[$cont]);
 				$this->Partes = array_values($this->Partes);
 				unset($this->Partes[$cont]);
-				$this->Partes = array_values($this->Partes);				
+				$this->Partes = array_values($this->Partes);
 
 				/* Cambia la parte anterior por parte que acumula */
 				$tmpParteIzq->Tipo = $this->ESACUMULA;
@@ -228,7 +228,6 @@ class Evaluador3 {
 	/* Evalúa la expresión convertida en piezas */
 	public function Evaluar() {
 		$resultado = 0;
-		
 		for ($pos = 0; $pos < sizeof($this->Piezas); $pos++) {
 			$tmpPieza = $this->Piezas[$pos];
 			$numA=0;
@@ -297,7 +296,7 @@ class Parte {
 				|3| |+| |2| |/| |5| 
 				|3| |+| |A|  A es un identificador de acumulador */
 
-	function Parte($tipo, $funcion, $operador, $numero, $unaVariable) {
+	function __construct($tipo, $funcion, $operador, $numero, $unaVariable) {
 		$this->Tipo = $tipo;
 		$this->Funcion = $funcion;
 		$this->Operador = $operador;
@@ -322,7 +321,7 @@ class Pieza {
 	public $VariableB; /* Es una variable */
 	public $PiezaB; /* Trae el valor de otra pieza */
 
-	function Pieza($funcion, $tipoA, $numeroA, $variableA, $piezaA, $operador, $tipoB, $numeroB, $variableB, $piezaB) {
+	function __construct($funcion, $tipoA, $numeroA, $variableA, $piezaA, $operador, $tipoB, $numeroB, $variableB, $piezaB) {
 		$this->Funcion = $funcion;
 
 		$this->TipoA = $tipoA;

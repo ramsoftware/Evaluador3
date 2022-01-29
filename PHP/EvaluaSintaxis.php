@@ -51,7 +51,7 @@ class EvaluaSintaxis {
 	/* 0. Detecta si hay un caracter no válido */
 	function BuenaSintaxis00($expresion) {
 		$Resultado = true;
-		$permitidos = "aabcdefghijklmnopqrstuvwxyz0123456789.+-*/^()";
+		$permitidos = "abcdefghijklmnopqrstuvwxyz0123456789.+-*/^()";
 		for ($pos = 0; $pos < strlen($expresion) && $Resultado; $pos++)
 		if (strpos($permitidos, $expresion[$pos]) === false)
 			$Resultado = false;
@@ -400,6 +400,10 @@ class EvaluaSintaxis {
 			if ($letra >= 'A' && $letra <= 'Z') $letra = chr(ord($letra) + ord(' '));
 			if ($letra != ' ' && $letra != '	') $nuevo .= $letra;
 		}
+		
+		/* Cambia los )) por )+0) porque es requerido al crear las piezas */
+		while (strpos($nuevo,"))")) $nuevo = str_replace("))", ")+0)", $nuevo);
+
 		return $nuevo;
 	}
 
